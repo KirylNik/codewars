@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+ <head>
+
+ </head>
+ <body>
+<script>
+
+class Cat {
+  constructor (name, weight){
+  	if (name && weight) {
+	    this[name] = {}
+	    this[name].name = name;
+	    this[name].weight = weight;
+	    this.name = name;
+	    this.weight = this[this[name].name].weight;
+	    if (Cat.allCats) {
+	      Cat.allCats.push(this[name]);
+	    } else {
+	      Cat.allCats = [];
+	      Cat.allCats.push(this[name]);
+	    };
+
+	    Object.defineProperty(this, 'weight', {
+	  		get: function() {
+	   		return(this[this.name].weight);
+	  		}
+		});
+
+		Object.defineProperty(this, 'weight', {
+	  		set: function(weight) {
+  			this[this.name].weight = weight;
+  			return;
+  			}
+		});
+
+	} else {
+		new thrown;
+	}
+  }
+  static averageWeight() {
+    this.weightSum = 0;
+    for (let i = 0; i < Cat.allCats.length; i++) {
+      this.weightSum += Cat.allCats[i].weight;
+    };
+    return (this.weightSum / Cat.allCats.length)
+  }
+
+};
+
+
+    let fluffy = new Cat('fluffy', 15);
+    let garfield = new Cat('garfield', 25);
+
+    console.log(fluffy.weight)
+    console.log(fluffy instanceof Cat);
+    console.log(fluffy.averageWeight);
+    console.log(typeof Cat.averageWeight);
+    console.log(Cat.averageWeight());
+    fluffy.weight = 35;
+    console.log(fluffy.weight);
+    console.log(Cat.averageWeight());
+    
+</script>
+ </body>
+</html>
