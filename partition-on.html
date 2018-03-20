@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+ <head>
+
+ </head>
+ <body>
+<script>
+
+function partitionOn(pred, items) {
+	let arrFalse = [];
+	let arrTrue = [];
+	let newItems = items.concat();
+	newItems.forEach(function(elem, i) {
+  		if (pred(elem)) {
+  			arrTrue.push(elem);
+  		} else {
+  			arrFalse.push(elem);
+  		}
+	});
+	newItems = arrFalse.concat(arrTrue);
+	for (var i = 0; i < newItems.length; i++) {
+		items[i] = newItems[i]
+	};
+	return (arrFalse.length);
+};
+
+var items = [1, 2, 3, 4, 5, 6];
+function isEven(n) {return n % 2 == 0}
+var i = partitionOn(isEven, items);
+console.log(i);
+console.log(items.slice(0, i));
+console.log(items.slice(i));
+
+</script>
+ </body>
+</html>
