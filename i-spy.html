@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+ <head>
+
+ </head>
+ <body>
+<script>
+
+function spyOn (func) {
+ 	let spyFunc = function () {
+	 				let result = func();
+	 				spyFunc.count++;
+	 				spyFunc.historyAnswer.push(result);
+	 				for (let i = 0; i < arguments.length; i++) {
+	 					spyFunc.historyArguments.push(arguments[i]);
+	 				};
+	 				return (result);
+				};
+	 spyFunc.count = 0;
+	 spyFunc.historyAnswer = [];
+	 spyFunc.historyArguments = [];
+	 spyFunc.callCount = function () { return (spyFunc.count) };
+	 spyFunc.returned = function (check) {return (spyFunc.historyAnswer.indexOf(check) == -1 ? false : true)};
+	 spyFunc.wasCalledWith = function (check) {
+	 	return (spyFunc.historyArguments.indexOf(check) == -1 ? false : true)
+	 };
+	 return (spyFunc);
+}; 
+
+
+
+function returns1 () { return 1; }
+
+var spy = spyOn(returns1);
+
+console.log(spy.callCount());
+console.log(spy.returned(1))
+console.log(spy.wasCalledWith('hello'));
+
+console.log(spy('hello', 'hi', 'howdy'));
+console.log(spy('goodbye', 'bye', 'see ya'));
+
+console.log(spy.callCount());
+console.log(spy.returned(1));
+console.log(spy.wasCalledWith('hi'));
+console.log(spy.wasCalledWith('bye'));
+
+</script>
+ </body>
+</html>

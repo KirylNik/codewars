@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+ <head>
+
+ </head>
+ <body>
+<script>
+
+function sequence(n, pattern) {
+
+  let arr = [];
+  if (typeof pattern == 'function') {
+    for (var i = 0; i < n; i++) {
+      arr.push(pattern(i, i));
+      }
+    } else if (pattern == undefined) {
+      for (var i = 0; i < n; i++) {
+        arr.push(null);
+      };
+    } else {
+      for (var i = 0; i < n; i++) {
+        arr.push(pattern);
+      };
+    };
+  return(arr); 
+};
+
+console.log(sequence(2, undefined));
+console.log(sequence(5, (x, idx) => idx%2));
+
+</script>
+ </body>
+</html>
