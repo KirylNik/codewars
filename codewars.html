@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+ <head>
+
+ </head>
+ <body>
+<script>
+
+let start = [0, 2, 4, 5, 3, 1, 8, 11, 10];
+
+// [0, 2, 4, 1, 3, 5, 8, 11, 10]
+
+function sort(arr) {
+	let oddNumbers = [];
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] % 2 != 0) {
+			oddNumbers.push(arr[i]);
+		};
+	};
+	oddNumbers.sort(sortNumbers);
+	function sortNumbers(a, b) {
+		return (a-b);
+	}
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] % 2 != 0) {
+			arr[i] = oddNumbers.shift();
+		}
+	};
+	return (arr);
+
+}
+
+let result = sort(start);
+console.log (result);
+
+
+</script>
+ </body>
+</html>
